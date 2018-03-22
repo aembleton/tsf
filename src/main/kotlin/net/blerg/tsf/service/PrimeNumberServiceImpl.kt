@@ -23,10 +23,4 @@ class PrimeNumberServiceImpl : PrimeNumberService {
 
     private fun Int.factorial() = (1..this).map { it.toBigInteger() }.reduce{a,b -> a*b}
 
-//    private fun Int.factorial():BigInteger {
-//        val bigInteger = (1..this).map { it.toBigInteger() }
-//        val result = bigInteger.reduce{a,b -> a*b}
-//
-//        return result
-//    }
 }
