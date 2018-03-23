@@ -1,5 +1,7 @@
 package net.blerg.tsf.service
 
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.runBlocking
 import java.math.BigInteger
 import kotlin.math.roundToInt
 
@@ -7,6 +9,13 @@ class PrimeNumberServiceImpl : PrimeNumberService {
 
     override fun trial(max:Int) = (1..max).filter{trialDivision(it)}
     override fun wilson(max:Int) = (1..max).filter{ wilsons(it) }
+
+    fun trialAsync(max:Int) = runBlocking {
+        (1..max).map { Pair(it, async {trialDivision(it)})}
+                .map { Pair(it.first, it.second.await()) }
+                .filter { it.second }
+                .map {it.first}
+    }
 
     private fun trialDivision(input:Int):Boolean {
         val sqrRoot = input.sqrt()

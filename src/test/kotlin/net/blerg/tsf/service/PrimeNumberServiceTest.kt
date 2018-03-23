@@ -22,6 +22,8 @@ class PrimeNumberServiceTest {
     fun trial100() = assertEquals(prime100, primeNumberService.trial(100))
     @Test
     fun trial1000() = assertEquals(prime1000, primeNumberService.trial(1000))
+    @Test
+    fun trialMillion() = assertEquals(prime1000, primeNumberService.trial(10_000_000))
 
     @Test
     fun wilsonNegative10() = assertEquals(prime0, primeNumberService.wilson(-10))
